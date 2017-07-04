@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-
 const Arena = require('../lib/arena')
 
 router.get('/', (req, res, next) => {
