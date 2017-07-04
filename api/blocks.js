@@ -4,12 +4,12 @@ const Arena = require('../lib/arena')
 
 router.get('/:id', (req, res, next) => {
   const arena = new Arena
-
   arena
     .block(req.params.id)
-    .then(data =>
+    .then(data =>{
+      console.log(data)
       res.render('show', data)
-    )
+    })
     .catch(next)
 })
 

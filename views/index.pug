@@ -5,7 +5,7 @@ block content
     = title
 
   .Grid
-    each block in helpers.shuffle(contents)
+    each block in contents
       if block.image
         a.GridBlock(
           href='/blocks/' + block.id
