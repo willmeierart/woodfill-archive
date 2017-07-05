@@ -25,7 +25,7 @@ app.use(helpers)
 
 app.use('/', index)
 app.use('/channels', channels)
-app.use('/channels', blocks)
+app.use('/blocks', blocks)
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found')
