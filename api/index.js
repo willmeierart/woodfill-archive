@@ -7,8 +7,8 @@ router.get('/', (req, res, next) => {
   const arena = new Arena
 
   arena
-    .channel(process.env.ARENA_CHANNEL_ID)
-    // .channel(81641)
+    // .channel(process.env.ARENA_CHANNEL_ID)
+    .channel(81710)
     .then(data =>{
       console.log(data.json)
       res.render('index', data)
