@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const index = require('./api/index')
 const channels = require('./api/channels')
 const blocks = require('./api/blocks')
+const dotenv = require('dotenv').config()
 
 const helpers = require('./middleware/helpers')
 
@@ -33,10 +34,12 @@ app.use(function(req, res, next) {
 })
 
 app.use(function(err, req, res, next) {
-  res.locals.message = err.message
-res.locals.error = req.app.get('env') === 'development' ? err : {}
-res.status(err.status || 500)
-res.render('error')
+  res.status(500)
+  // res.status(err.status || res.statusCode || 500)
+  res.json({
+    message: err.message,
+    error: req.app.get('env') === 'development' ? err : {}
+  })
 })
 
 module.exports = app

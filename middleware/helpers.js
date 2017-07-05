@@ -14,10 +14,18 @@ const shuffle = (xs) => {
 const rand = (min, max) =>
   Math.floor(Math.random() * (max - min) + min)
 
+
+const recent = ()=>{
+  
+}
+
+
+
 module.exports = (req, res, next) => {
   res.locals.helpers = {
     shuffle,
     rand,
+    recent
   }
 
   next()

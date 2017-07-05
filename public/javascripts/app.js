@@ -3,13 +3,14 @@ $(()=>{
     images.map(({ img }) =>{
       img.classList.add('img--loaded')
     });
+    console.log(images)
 
-    const packery = new Packery('.Grid', {
-      itemSelector: '.GridBlock',
-      gutter: 5,
-      percentPosition: true,
-    });
-    console.log(packery)
+    // const packery = new Packery('.Grid', {
+    //   itemSelector: '.GridBlock',
+    //   gutter: 5,
+    //   percentPosition: true,
+    // });
+    // console.log(packery)
 
     // packery.items.map(({ element }) => {
     //   const drag = new Draggabilly(element);

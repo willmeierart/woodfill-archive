@@ -9,6 +9,6 @@ block content
       if block.image
         a.GridBlock(
           href='/blocks/' + block.id
-          style='width: ' + helpers.rand(100, 400) + 'px;'
         )
-          img(src=block.image.display.url)
+          img(src=block.image.square.url)
+      br
