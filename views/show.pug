@@ -1,6 +1,12 @@
 extends layout
 
+
 block content
+  nav
+    h1.mainTitle JAMES WOODFILL - ARCHIVE
+    h1.links
+      a(href='woodfill.us' class="home") HOME
+      div.sidebar
   .Block
     if image
       img(src=image.large.url, alt=title, title=title)

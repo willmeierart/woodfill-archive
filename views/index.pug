@@ -1,14 +1,58 @@
 extends layout
 
-block content
-  h1.ChannelTitle
-    = title
 
-  .Grid
-    each block in contents
-      if block.image
-        a.GridBlock(
-          href='/blocks/' + block.id
-        )
-          img(src=block.image.square.url)
-      br
+
+block content
+  nav
+    h5.mainTitle JAMES WOODFILL - ARCHIVE
+    div.links
+      a(href='woodfill.us' class="home")
+        h5 HOME
+      div
+        div.nav
+          div.sidebar
+            a.sidebarToggle
+              div
+              div
+              div
+            div.sidebarMenu
+              div.sidebarclose CLOSE
+              each channel in channels
+                if channel.subchannel
+                  a(class="sidebarMenuLink" href='/channels/'+channel.subchannel.id)=channel.subchannel.title
+                  hr
+                else
+                  a(class="sidebarMenuLink" href='/channels/'+channel.id)=channel.title
+                  hr
+  main
+    each channel in channels
+
+      if channel.subchannel
+        .Grid
+          a.GridBlock(
+            href='/channels/' + channel.subchannel.id
+            id=channel.subchannel.title
+
+          )
+            img(src=channel.subchannel.contents[0].image.square.url)
+            div(class="titleText")
+              h1= channel.title
+      else if channel.contents[0].image
+        .Grid
+          a.GridBlock(
+            href='/channels/' + channel.contents[0].id
+            id=channel.title
+          )
+            img(src=channel.contents[0].image.square.url)
+            div(class="titleText")
+              h1= channel.title
+
+      else if channel.contents[1].image
+        .Grid
+          a.GridBlock(
+            href='/channels/' + channel.contents[1].id
+            id=channel.title
+          )
+            img(src=channel.contents[1].image.square.url)
+            div(class="titleText")
+              h1= channel.title

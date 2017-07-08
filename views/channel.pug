@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1.ChannelTitle
+    = title
+
+  .Grid
+    each block in contents
+      if block.image
+        a.GridBlock(
+          href='/blocks/' + block.id
+        )
+          img(src=block.image.display.url)

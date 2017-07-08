@@ -8,7 +8,7 @@ router.get('/:id', (req, res, next) => {
   arena
     .channel(req.params.id)
     .then(data =>
-      res.render('index', data)
+      res.render('channel', data)
     )
     .catch(next)
 });

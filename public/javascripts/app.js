@@ -2,19 +2,18 @@ $(()=>{
   imagesLoaded('.Grid', ({ images }) => {
     images.map(({ img }) =>{
       img.classList.add('img--loaded')
-    });
-    console.log(images)
+    })
+  })
 
-    // const packery = new Packery('.Grid', {
-    //   itemSelector: '.GridBlock',
-    //   gutter: 5,
-    //   percentPosition: true,
-    // });
-    // console.log(packery)
+  $('.sidebarToggle').click(()=>{
+    $(".sidebarMenu").animate({width:'toggle'},350);
+  })
 
-    // packery.items.map(({ element }) => {
-    //   const drag = new Draggabilly(element);
-    //   packery.bindDraggabillyEvents(drag);
-    // });
-  });
+  $('.sidebarclose').click(()=>{
+    $(".sidebarMenu").animate({width:'toggle'},350);
+  })
+
+
+
+
 })
