@@ -9,7 +9,7 @@ html {
   box-sizing: inherit;
   /*font-family: 'Lato', sans-serif;
   font-weight: lighter;*/
-  font-family: 'PT Mono', monospace;
+  /*font-family: 'PT Mono', monospace;*/
 }
 
 nav {
@@ -150,6 +150,11 @@ main{
   z-index:0;
 }
 
+.channelMain{
+  display: inline-block;
+  height:100%;
+}
+
 a {
   color: black;
   text-decoration: none;
@@ -178,6 +183,10 @@ h3 {
   margin: 3em;
   text-align: center;
   text-transform: uppercase;
+}
+
+.headTitle{
+  font-weight: bold;
 }
 
 .titleText{
@@ -226,6 +235,22 @@ h3 {
   display: inline-block;
 }
 
+.textBlock {
+  box-sizing: border-box;
+  width:220px;
+  height:220px;
+  background:white;
+  font-family: 'Lato', sans-serif;
+  font-weight: lighter;
+  padding: 1%;
+  margin:10px;
+  overflow:hidden;
+  text-overflow:clip;
+
+  font-size:80%;
+
+}
+
 .GridBlock > img {
   opacity: 0;
   transition: opacity 500ms;
@@ -244,9 +269,14 @@ h3 {
   color:white;
   font-family: 'Lato', sans-serif;
   font-weight: lighter;
+
 }
 .blockMain a{
   color:skyblue;
+
+}
+.blockMain > * {
+    /*text-align:left;*/
 }
 
 .Block {
@@ -263,12 +293,12 @@ h3 {
     /*width:200px;*/
   }
 
-.BlockMetadata *{
+.BlockMetadata > *{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align:center;
+  /*text-align:left;*/
 }
 
 .BlockMetadata {
@@ -280,4 +310,17 @@ h3 {
   min-height: 25vh;
   margin: 0 auto;
   padding: 5px;
+  /*text-align:left;*/
+}
+
+.BlockMetadata__title {
+  text-transform: uppercase;
+  /*text-align:left;*/
+}
+.BlockMetadata__source *{
+  /*text-align: left;*/
+}
+
+.BlockMetadata__description:{
+  /*text-align: left;*/
 }

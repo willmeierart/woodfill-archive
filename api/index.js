@@ -27,7 +27,6 @@ router.get('/', (req, res, next) => {
           }) => {
             let channelObj = {}
             return newObj(data)
-
             function newObj(data) {
               channelObj = {
                 id: data.id,
@@ -43,60 +42,20 @@ router.get('/', (req, res, next) => {
               }
               let stuff = data.contents
               for (let item of stuff) {
-                if (item.class == 'Channel'){
-                  let ind = item.id
-                  return axios.get(`https://api.are.na/v2/channels/${ind}`)
-                    .then(({data}) => {
-                      let subdata = data
-                      let subchannelObj = {
-                        id: subdata.id,
-                        title: subdata.title,
-                        length: subdata.length,
-                        created_at: subdata.created_at,
-                        updated_at: subdata.updated_at,
-                        added_at: subdata.added_at,
-                        kind: subdata.kind,
-                        class: subdata.class,
-                        base_class: subdata.base_class,
-                        contents: []
-                      }
-                      let subStuff = subdata.contents
-                      for (let subitems of subStuff){
-                        subchannelObj.contents.push({
-                          id: subitems.id,
-                          title: subitems.title,
-                          position: subitems.position,
-                          created_at: subitems.created_at,
-                          updated_at: subitems.updated_at,
-                          added_at: subitems.added_at,
-                          connected_at: subitems.connected_at,
-                          content: subitems.content_html,
-                          description: subitems.description_html,
-                          source: subitems.source,
-                          image: subitems.image,
-                          connection_id: subitems.connection_id
-                        })
-                      }
-                      channelObj.subchannel = subchannelObj
-                      return channelObj
-                    })
-
-                }else{
-                  channelObj.contents.push({
-                    id: item.id,
-                    title: item.title,
-                    position: item.position,
-                    created_at: item.created_at,
-                    updated_at: item.updated_at,
-                    added_at: item.added_at,
-                    connected_at: item.connected_at,
-                    content: item.content_html,
-                    description: item.description_html,
-                    source: item.source,
-                    image: item.image,
-                    connection_id: item.connection_id
-                  })
-                }
+                channelObj.contents.push({
+                  id: item.id,
+                  title: item.title,
+                  position: item.position,
+                  created_at: item.created_at,
+                  updated_at: item.updated_at,
+                  added_at: item.added_at,
+                  connected_at: item.connected_at,
+                  content: item.content_html,
+                  description: item.description_html,
+                  source: item.source,
+                  image: item.image,
+                  connection_id: item.connection_id
+                })
               }
               return channelObj
             }

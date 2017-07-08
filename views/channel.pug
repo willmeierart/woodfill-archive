@@ -4,17 +4,38 @@ block content
   nav
     a(href="/")
       h5.mainTitle JAMES WOODFILL - ARCHIVE
+    h5.headTitle #{title}
     div.links
-      a(href='woodfill.us' class="home")
+      a(href='http://woodfill.us' class="home")
         h5 HOME
   main
-    h1.ChannelTitle
-      = title
 
-    .Grid
-      each block in contents
-        if block.image
+
+
+    each block in contents
+      if block.channelStatus
+        .Grid
+          a.GridBlock(
+            href='/channels/' + block.id
+            id=block.title
+          )
+            img(src=block.contents[0].image.square.url)
+            div(class="titleText")
+              h1= block.title
+
+      else if block.content
+        .Grid
+          a(
+            class="GridBlock  textBlock" href='/blocks/' + block.id
+          )
+            = block.content
+
+
+      else if block.image
+        .Grid
           a.GridBlock(
             href='/blocks/' + block.id
           )
             img(src=block.image.square.url)
+            div(class="titleText")
+              h1= block.title

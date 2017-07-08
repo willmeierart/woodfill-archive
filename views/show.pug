@@ -10,8 +10,11 @@ block content
         h5 HOME
   main.blockMain
     .Block
-      if image
+      if embed
+        div!=embed.html
+      else if image
         img(src=image.large.url, alt=title, title=title)
+
 
     .BlockMetadata
       .BlockMetadata__title
@@ -23,7 +26,9 @@ block content
 
       if source
         .BlockMetadata__source
-          | Source:
-          = ' '
           a(href=source.url)
             | #{source.title} (#{source.url})
+      if attachment
+        .BlockMetadata__source
+          a(href=attachment.url)
+            | #{attachment.file_name} (#{attachment.url})

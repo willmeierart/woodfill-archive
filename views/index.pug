@@ -19,26 +19,13 @@ block content
             div.sidebarMenu
               div.sidebarclose CLOSE
               each channel in channels
-                if channel.subchannel
-                  a(class="sidebarMenuLink" href='/channels/'+channel.subchannel.id)=channel.subchannel.title
-                  hr
-                else
-                  a(class="sidebarMenuLink" href='/channels/'+channel.id)=channel.title
-                  hr
+
+                a(class="sidebarMenuLink" href='/channels/'+channel.id)=channel.title
+                hr
   main
     each channel in channels
 
-      if channel.subchannel
-        .Grid
-          a.GridBlock(
-            href='/channels/' + channel.subchannel.id
-            id=channel.subchannel.title
-
-          )
-            img(src=channel.subchannel.contents[0].image.square.url)
-            div(class="titleText")
-              h1= channel.title
-      else if channel.contents[0].image
+      if channel.contents[0].image
         .Grid
           a.GridBlock(
             href='/channels/' + channel.id
