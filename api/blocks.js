@@ -7,7 +7,6 @@ router.get('/:id', (req, res, next) => {
   arena
     .block(req.params.id)
     .then(data =>{
-      console.log(data)
       res.render('show', data)
     })
     .catch(next)

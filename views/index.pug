@@ -4,7 +4,8 @@ extends layout
 
 block content
   nav
-    h5.mainTitle JAMES WOODFILL - ARCHIVE
+    a(href="/")
+      h5.mainTitle JAMES WOODFILL - ARCHIVE
     div.links
       a(href='woodfill.us' class="home")
         h5 HOME
@@ -40,7 +41,7 @@ block content
       else if channel.contents[0].image
         .Grid
           a.GridBlock(
-            href='/channels/' + channel.contents[0].id
+            href='/channels/' + channel.id
             id=channel.title
           )
             img(src=channel.contents[0].image.square.url)
@@ -50,7 +51,7 @@ block content
       else if channel.contents[1].image
         .Grid
           a.GridBlock(
-            href='/channels/' + channel.contents[1].id
+            href='/channels/' + channel.id
             id=channel.title
           )
             img(src=channel.contents[1].image.square.url)

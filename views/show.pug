@@ -3,25 +3,27 @@ extends layout
 
 block content
   nav
-    h1.mainTitle JAMES WOODFILL - ARCHIVE
-    h1.links
-      a(href='woodfill.us' class="home") HOME
-      div.sidebar
-  .Block
-    if image
-      img(src=image.large.url, alt=title, title=title)
+    a(href="/")
+      h5.mainTitle JAMES WOODFILL - ARCHIVE
+    div.links
+      a(href='woodfill.us' class="home")
+        h5 HOME
+  main.blockMain
+    .Block
+      if image
+        img(src=image.large.url, alt=title, title=title)
 
-  .BlockMetadata
-    .BlockMetadata__title
-      = title
+    .BlockMetadata
+      .BlockMetadata__title
+        = title
 
-    if description_html
-      .BlockMetadata__description
-        != description_html
+      if description_html
+        .BlockMetadata__description
+          != description_html
 
-    if source
-      .BlockMetadata__source
-        | Source:
-        = ' '
-        a(href=source.url)
-          | #{source.title} (#{source.url})
+      if source
+        .BlockMetadata__source
+          | Source:
+          = ' '
+          a(href=source.url)
+            | #{source.title} (#{source.url})
