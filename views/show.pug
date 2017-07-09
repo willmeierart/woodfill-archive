@@ -13,7 +13,12 @@ block content
       if embed
         div!=embed.html
       else if image
-        img(src=image.large.url, alt=title, title=title)
+        if attachment
+          a(href=attachment.url)
+            img(src=image.large.url, alt=title, title=title)
+
+        else
+          img(src=image.large.url, alt=title, title=title)
 
 
     .BlockMetadata

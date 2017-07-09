@@ -281,17 +281,23 @@ h3 {
 
 .Block {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 75vh;
   align-items: center;
   justify-content: center;
   padding: 5px;
+  position: relative;
 }
-  .Block > img {
+  .Block > img{
     max-width: 100%;
     max-height: 100%;
     /*width:200px;*/
   }
+
+   .Block > a img {
+     max-height: 60vh;
+   }
 
 .BlockMetadata > *{
   display: flex;
@@ -311,6 +317,7 @@ h3 {
   margin: 0 auto;
   padding: 5px;
   /*text-align:left;*/
+  text-align:center;
 }
 
 .BlockMetadata__title {
