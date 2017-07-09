@@ -44,3 +44,11 @@ block content
             img(src=channel.contents[1].image.square.url)
             div(class="titleText")
               h1= channel.title
+      else
+        .Grid
+          a.GridBlock(
+            href='/channels/' + channel.id
+            id=channel.title
+          )
+            div(class="titleText")
+              h1= channel.title
