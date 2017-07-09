@@ -6,17 +6,21 @@ block content
     a(href="/")
       h5.mainTitle JAMES WOODFILL - ARCHIVE
     div.links
-      a(href='woodfill.us' class="home")
-        h5 HOME
+      a(href='http://woodfill.us' class="home")
+        h5 WOODFILL.US
   main.blockMain
     .Block
       if embed
         div!=embed.html
+      else if content
+        div.textBlockContent!=content_html
       else if image
         if attachment
           a(href=attachment.url)
             img(src=image.large.url, alt=title, title=title)
-
+        else if source
+          a(href=source.url)
+            img(src=image.large.url, alt=title, title=title)
         else
           img(src=image.large.url, alt=title, title=title)
 

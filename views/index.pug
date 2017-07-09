@@ -7,8 +7,8 @@ block content
     a(href="/")
       h5.mainTitle JAMES WOODFILL - ARCHIVE
     div.links
-      a(href='woodfill.us' class="home")
-        h5 HOME
+    a(href='http://woodfill.us' class="home")
+      h5 WOODFILL.US
       div
         div.nav
           div.sidebar
@@ -24,8 +24,17 @@ block content
                 hr
   main
     each channel in channels
+      if channel.subchannel
+        .Grid
+          a.GridBlock(
+            href='/channels/' + channel.subchannel
+            id=channel.title
+          )
+            img(src=channel.contents[0].image.square.url)
+            div(class="titleText")
+              h1= channel.title
 
-      if channel.contents[0].image
+      else if channel.contents[0].image
         .Grid
           a.GridBlock(
             href='/channels/' + channel.id
@@ -52,3 +61,5 @@ block content
           )
             div(class="titleText")
               h1= channel.title
+  div.footer
+    h5.rights All rights reserved ©

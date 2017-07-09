@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const axios = require('axios')
 const Arena = require('../lib/arena')
-require('dotenv').config()
 
 router.get('/', (req, res, next) => {
   const ids = []
@@ -42,6 +41,9 @@ router.get('/', (req, res, next) => {
               }
               let stuff = data.contents
               for (let item of stuff) {
+                if (item.class == 'Channel'){
+                  channelObj.subchannel = item.id
+                }
                 channelObj.contents.push({
                   id: item.id,
                   title: item.title,

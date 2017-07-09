@@ -7,35 +7,26 @@ block content
     h5.headTitle #{title}
     div.links
       a(href='http://woodfill.us' class="home")
-        h5 HOME
-  main
-
-
-
+        h5 WOODFILL.US
+  main.channelPage
     each block in contents
       if block.channelStatus
         .Grid
-          a.GridBlock(
-            href='/channels/' + block.id
-            id=block.title
-          )
+          a.GridBlock(href='/channels/' + block.id, id=block.title)
             img(src=block.contents[0].image.square.url)
             div(class="titleText")
               h1= block.title
 
       else if block.content
         .Grid
-          a(
-            class="GridBlock  textBlock"
-          )
+          a.GridBlock.textBlock(href='/blocks/' + block.id)
             = block.content
-
 
       else if block.image
         .Grid
-          a.GridBlock(
-            href='/blocks/' + block.id
-          )
+          a.GridBlock(href='/blocks/' + block.id)
             img(src=block.image.square.url)
             div(class="titleText")
               h1= block.title
+  div.footer
+    h5.rights All rights reserved ©

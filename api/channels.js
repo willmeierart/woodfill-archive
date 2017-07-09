@@ -19,7 +19,6 @@ router.get('/:id', (req, res, next) => {
           return 0
         })
       }
-
       function isChannel(item) {
         if (item.class == 'Channel') {
           return axios.get(`https://api.are.na/v2/channels/${item.id}`)
@@ -67,7 +66,6 @@ router.get('/:id', (req, res, next) => {
           return item
         }
       }
-
       function wholeShabang(channel){
         sortEm(channel.contents)
         for (let item of channel.contents) {
@@ -78,60 +76,13 @@ router.get('/:id', (req, res, next) => {
         console.log(channel)
         return channel
       }
-
       return wholeShabang(channel)
-
-
     })
     .then((channel) => {
 
       res.render('channel', channel)
     })
     .catch(next)
-
-
-
-
-});
-
-
-
-
-// function isChannel(channel){
-//   for (let item of channel.contents){
-//     if (item.class == 'Channel'){
-//       delete item.contents
-//       let ind = item.id
-//       return axios.get(`https://api.are.na/v2/channels/${ind}`)
-//         .then(({data}) => {
-//           item.contents = []
-//           for (let subitems of data.contents){
-//             item.contents.push({
-//               id: subitems.id,
-//               title: subitems.title,
-//               position: subitems.position,
-//               created_at: subitems.created_at,
-//               updated_at: subitems.updated_at,
-//               added_at: subitems.added_at,
-//               connected_at: subitems.connected_at,
-//               content: subitems.content_html,
-//               description: subitems.description_html,
-//               source: subitems.source,
-//               image: subitems.image,
-//               connection_id: subitems.connection_id
-//             })
-//           }
-//
-//           console.log(item.contents)
-//           return channel
-//         })
-//         // .then((deepChannel)=>{
-//         //   console.log(deepChannel.contents)
-//         // })
-//     }
-//     console.log(channel.contents)
-//     return channel
-//   }
-// }
+})
 
 module.exports = router

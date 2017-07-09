@@ -123,7 +123,7 @@ h5{
   color:black;
   width:100%;
   min-height:30px;
-  border-top: 1px solid black;
+  /*border-top: 1px solid black;*/
   cursor: pointer;
 }
 
@@ -143,13 +143,26 @@ body {
 main{
   width:100vw;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  align-self: center;
   margin-top: 73px;
   background-color: #EFEFEF;
   z-index:0;
-  padding-bottom:-10px;
+
 }
+/*
+.gridContainer{
+  align-self: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+}*/
 
 .channelMain{
   display: inline-block;
@@ -244,10 +257,10 @@ h3 {
   background:white;
   font-family: 'Lato', sans-serif;
   font-weight: lighter;
-  padding: 1%;
+  padding: 2%;
   margin:10px;
   overflow:scroll;
-
+  text-align: justify;
   font-size:80%;
 
 }
@@ -290,15 +303,27 @@ h3 {
   padding: 5px;
   position: relative;
 }
-  .Block > img{
-    max-width: 100%;
-    max-height: 100%;
-    /*width:200px;*/
-  }
 
-   .Block > a img {
-     max-height: 60vh;
-   }
+.Block > img{
+  max-width: 100%;
+  max-height: 100%;
+  /*width:200px;*/
+}
+
+ .Block > a img{
+   max-height: 70vh;
+ }
+ .textBlockContent {
+   min-height: 70vh;
+   width:70vh;
+   background: white;
+   font-family: 'Lato', sans-serif;
+   font-weight: lighter;
+   color:black;
+   padding:5%;
+   overflow: scroll;
+
+ }
 
 .BlockMetadata > *{
   display: flex;
@@ -331,4 +356,18 @@ h3 {
 
 .BlockMetadata__description:{
   /*text-align: left;*/
+}
+
+.footer{
+  width:100vw;
+  display: flex;
+  height:10%;
+  margin-top:-15px;
+  justify-content: flex-end;
+  z-index: 10;
+  background: white;
+}
+
+.rights{
+  margin-right:10px;
 }

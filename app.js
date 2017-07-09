@@ -9,8 +9,6 @@ const channels = require('./api/channels')
 const blocks = require('./api/blocks')
 const dotenv = require('dotenv').config()
 
-const helpers = require('./middleware/helpers')
-
 const app = express()
 
 app.set('views', path.join(__dirname, 'views'))
@@ -21,7 +19,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(helpers)
 
 app.use('/', index)
 app.use('/channels', channels)
