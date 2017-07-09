@@ -7,19 +7,44 @@ router.get('/:id', (req, res, next) => {
   const arena = new Arena
   arena
     .channel(req.params.id)
-    .then(channel =>{
-      isChannel(channel)
-      function isChannel(channel){
-        for (let item of channel.contents){
-          if (item.class == 'Channel'){
-            delete item.contents
-            let ind = item.id
-            return axios.get(`https://api.are.na/v2/channels/${ind}`)
-              .then(({data}) => {
-                item.contents = []
-                let stuff = data.contents
-                for (let subitems of stuff){
-                  item.contents.push({
+    .then(channel => {
+      return channel
+    }).then((channel) => {
+      function sortEm(channel) {
+        return channel.sort((a, b) => {
+          let x = a.position
+          let y = b.position
+          if (x > y) return -1
+          if (x < y) return 1
+          return 0
+        })
+      }
+
+      function isChannel(item) {
+        if (item.class == 'Channel') {
+          return axios.get(`https://api.are.na/v2/channels/${item.id}`)
+            .then(({
+              data
+            }) => {
+              let channelObj = {}
+              return newObj(data)
+              function newObj(data){
+                channelObj = {
+                  channelStatus:true,
+                  id: data.id,
+                  title: data.title,
+                  length: data.length,
+                  created_at: data.created_at,
+                  updated_at: data.updated_at,
+                  added_at: data.added_at,
+                  kind: data.kind,
+                  class: data.class,
+                  base_class: data.base_class,
+                  contents: []
+                }
+                for (let subitems of data.contents) {
+                  // console.log(subitems)
+                  channelObj.contents.push({
                     id: subitems.id,
                     title: subitems.title,
                     position: subitems.position,
@@ -34,40 +59,79 @@ router.get('/:id', (req, res, next) => {
                     connection_id: subitems.connection_id
                   })
                 }
-
-                // console.log(item.contents)
-                return item
-              })
-              // .then((deepChannel)=>{
-              //   console.log(deepChannel.contents)
-              // })
-          }
-          console.log(channel.contents)
-          return channel
+                sortEm(channelObj.contents)
+                return channelObj
+              }
+            })
+        } else {
+          return item
         }
       }
 
-      channel.contents.sort((a,b) => {
-        let x = a.position
-        let y = b.position
-        if (x > y) return -1
-        if (x < y) return 1
-        return 0
-
-      })
-      if (channel.contents.subchannel){
-          channel.contents.subchannel.contents.sort((a,b)=>{
-            let x = a.position
-            let y = b.position
-            if (x > y) return -1
-            if (x < y) return 1
-            return 0
-          })
+      function wholeShabang(channel){
+        sortEm(channel.contents)
+        for (let item of channel.contents) {
+          isChannel(item)
+        }
+        // console.log(channel)
+        // res.render('channel', channel)
+        console.log(channel)
+        return channel
       }
-      // console.log(channel)
+
+      return wholeShabang(channel)
+
+
+    })
+    .then((channel) => {
+
       res.render('channel', channel)
     })
     .catch(next)
+
+
+
+
 });
+
+
+
+
+// function isChannel(channel){
+//   for (let item of channel.contents){
+//     if (item.class == 'Channel'){
+//       delete item.contents
+//       let ind = item.id
+//       return axios.get(`https://api.are.na/v2/channels/${ind}`)
+//         .then(({data}) => {
+//           item.contents = []
+//           for (let subitems of data.contents){
+//             item.contents.push({
+//               id: subitems.id,
+//               title: subitems.title,
+//               position: subitems.position,
+//               created_at: subitems.created_at,
+//               updated_at: subitems.updated_at,
+//               added_at: subitems.added_at,
+//               connected_at: subitems.connected_at,
+//               content: subitems.content_html,
+//               description: subitems.description_html,
+//               source: subitems.source,
+//               image: subitems.image,
+//               connection_id: subitems.connection_id
+//             })
+//           }
+//
+//           console.log(item.contents)
+//           return channel
+//         })
+//         // .then((deepChannel)=>{
+//         //   console.log(deepChannel.contents)
+//         // })
+//     }
+//     console.log(channel.contents)
+//     return channel
+//   }
+// }
 
 module.exports = router
